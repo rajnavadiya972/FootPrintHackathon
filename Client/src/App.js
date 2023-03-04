@@ -1,16 +1,18 @@
 
-import './App.css';
-import Navbar from './Component/Navbar';
-
-import Home from './Component/Home'
 import Loginpage from './Component/Loginpage';
+import Notification from './Component/Notification';
+import Home from './Component/Home';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
-    <div className="dark:bg-gray-900 bg-white">
-      <Loginpage />
-     
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Loginpage />} />
+      <Route path="/Notification" element={<Notification />} />
+      <Route path="/Home" element={<Home />} />
       
-    </div>
+  </Routes>    
+    </BrowserRouter>
   );
 }
 

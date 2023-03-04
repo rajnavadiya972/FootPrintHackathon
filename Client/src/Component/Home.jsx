@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Navbar from './Navbar';
 import PostCard from './PostCard';
 const postdatacard = [
     {
@@ -42,17 +43,21 @@ const Home = () => {
         setPostdata(newArr);
     }
     return (
-        <div className='flex flex-col  '>
+        <div className='flex  text-white '>
+            <Navbar />
+            <div className='flex flex-col'>
+
             {
                 postdata.length == 0 ? <h1> no any new posts </h1> :
-                    postdata.map((item, index) => (
-                        <div>
+                postdata.map((item, index) => (
+                    <div>
 
                             <PostCard item={item} key={index} onChange={updateFieldChanged(index)} postdata={postdata} setPostdata={setPostdata} />
                         </div>
                     ))
-            }
+                }
         </div>
+                </div>
     )
 }
 
