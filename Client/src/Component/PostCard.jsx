@@ -15,7 +15,7 @@ const PostCard = ({ item, postdata, setPostdata }) => {
     }
     return (
         <div>
-            <div className='w-2/6 max-lg:w-4/6 mx-auto dark:text-white'>
+            <div className='w-3/6 max-lg:w-4/6 mx-auto dark:text-white'>
                 <div class="my-10">
                     <div class="bg-white shadow-slate-700 rounded-lg dark:bg-gray-800 pb-0.5">
                         <div class="flex items-center px-4 py-3">

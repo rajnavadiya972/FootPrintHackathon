@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { AiFillHome, AiOutlineRightCircle, AiOutlineSearch, AiOutlineCompass, AiFillMessage, AiOutlineHeart, AiOutlinePlayCircle, AiOutlineFolderAdd, AiFillInstagram } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { HiOutlineMenu } from "react-icons/hi";
+
 
 
 
 const Navbar = () => {
     const [index1, setIndex1] = useState(100);
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const Menus = [
         { title: "Home", icon: AiFillHome, Link: '/Home' },
         { title: "Search", icon: AiOutlineSearch, Link: '/Home' },
@@ -23,61 +25,68 @@ const Navbar = () => {
         setOpen(!open)
 
     }
+
+    const [menu, setMenu] = useState(false)
+
     return (
-        <div className="flex">
-            <div
-                className={` ${open ? "w-72" : "w-20 "
-                    } bg-gray-900 h-screen p-5  pt-8 relative duration-300`}
-            >
+        <div className="border-r-2 border-gray-500 fixed">
+            <div className="absolute my-1 mx-2 p-2 rounded-lg bg-gray-800 ">
+                <HiOutlineMenu size={35} onClick={() => { setMenu(!menu) }} />
+            </div>
+            <div className={`flex max-md:mt-14 ${menu ? "max-md:flex" : "max-md:hidden"}`}>
+                <div
+                    className={` ${open ? "w-72" : "w-20 "
+                        } bg-gray-900 h-screen p-5  pt-8 relative duration-300`}
+                >
 
-                <AiOutlineRightCircle size={25}
-                    className={`absolute bg-white cursor-pointer -right-3 top-9 w-7 text-black
-            rounded-full  ${!open && "rotate-180"}`}
-                    onClick={openbar}
-                />
-                {
-                    open ?
-                        <div className="flex gap-x-4 items-center">
+                    <AiOutlineRightCircle size={25}
+                        className={`absolute bg-white cursor-pointer -right-5 top-9 w-7 text-black 
+            rounded-full max-md:hidden ${!open && "rotate-180"}`}
+                        onClick={openbar}
+                    />
+                    {
+                        open ?
+                            <div className="flex gap-x-4 items-center">
 
+                                <AiFillInstagram size={40}
+                                    className={`text-white cursor-pointer`}
+                                />
+
+                                <h1
+                                    className={`text-white origin-left font-medium text-xl duration-200 ${!open && "scale-0"
+                                        }`}
+                                >
+                                    Instagram
+                                </h1>
+                            </div> :
                             <AiFillInstagram size={40}
                                 className={`text-white cursor-pointer   "
-                                    }`}
+                                }`}
                             />
 
-                            <h1
-                                className={`text-white origin-left font-medium text-xl duration-200 ${!open && "scale-0"
-                                    }`}
-                            >
-                                Instagram
-                            </h1>
-                        </div> :
-                        <AiFillInstagram size={40}
-                            className={`text-white cursor-pointer   "
-                                }`}
-                        />
+                    }
+                    <ul className="pt-6">
+                        {Menus.map((Menu, index) => (
 
-                }
-                <ul className="pt-6">
-                    {Menus.map((Menu, index) => (
-
-                        <NavLink to={Menu.Link} >
-                            <li
-                                onClick={() => { setIndex1(index) }}
-                                key={index}
-                                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+                            <NavLink to={Menu.Link} >
+                                <li
+                                    onClick={() => { setIndex1(index) }}
+                                    key={index}
+                                    className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"} ${index === index1 && "bg-light-white"
-                                    } `}
-                            >
-                                <Menu.icon size={25} />
-                                <span className={`${!open && "hidden"} origin-left duration-200`}>
-                                    {Menu.title}
-                                </span>
-                            </li>
-                        </NavLink >
-                    ))}
-                </ul>
-            </div>
+                                        } `}
+                                >
+                                    <Menu.icon size={25} />
+                                    <span className={`${!open && "hidden"} origin-left duration-200`}>
+                                        {Menu.title}
+                                    </span>
+                                </li>
+                            </NavLink >
+                        ))}
+                    </ul>
+                </div>
 
+            </div>
         </div>
     );
 };
