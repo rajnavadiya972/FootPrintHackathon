@@ -1,4 +1,7 @@
 
+import './App.css';
+import Navbar from './Component/Navbar';
+
 import Home from './Component/Home'
 import Loginpage from './Component/Loginpage';
 function App() {
@@ -6,6 +9,7 @@ function App() {
     <div className="dark:bg-gray-900 bg-white">
       <Loginpage />
      
+      
     </div>
   );
 }
