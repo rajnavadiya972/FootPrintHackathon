@@ -28,6 +28,14 @@ io.on("connection", (socket) => {
     console.log(username, socket.id);
     addNewUser(username, socket.id);
   });
+
+  socket.on("sendNotification", ({senderName, receiverName, type}) => {
+    const receiver = getUser(receiverName);
+    io.to(receiver.socketId).emit("getNotification", {
+      senderName,
+      type,
+    });
+  });
   socket.on("disconnect", () => {
     removeUser(socket.id);
     console.log("Some One disconnected");
