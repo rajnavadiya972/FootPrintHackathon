@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
-    const [index1, setIndex1] = useState();
+    const [index1, setIndex1] = useState(100);
 
     const [open, setOpen] = useState(true);
     const Menus = [
@@ -31,7 +31,7 @@ const Navbar = () => {
             >
 
                 <AiOutlineRightCircle size={25}
-                    className={`absolute bg-white cursor-pointer -right-3 top-9 w-7
+                    className={`absolute bg-white cursor-pointer -right-3 top-9 w-7 text-black
             rounded-full  ${!open && "rotate-180"}`}
                     onClick={openbar}
                 />
