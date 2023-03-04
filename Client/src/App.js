@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {io} from "socket.io-client";
+import React, {useEffect, useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  //get the username from frontend
+  const [user, setUser] = useState("harsh");
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    setSocket(io("http://localhost:5000"));
+    // const socket = io("http://localhost:5000");
+    // socket.on("FirstEvent", (msg) => console.log(msg));
+  }, []);
+
+  useEffect(() => {
+    socket?.emit("newUser", user);
+    console.log(socket);
+    console.log("new user added ", socket?.id);
+  }, [socket, user]);
+
+  return <h1>Hello</h1>;
+};
 
 export default App;
