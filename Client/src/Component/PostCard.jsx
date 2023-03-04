@@ -12,7 +12,6 @@ const PostCard = ({ item, postdata, setPostdata }) => {
     const likedislike = () => {
         if (liked == false) setLiked(true)
         else setLiked(false)
-
     }
     return (
         <div>

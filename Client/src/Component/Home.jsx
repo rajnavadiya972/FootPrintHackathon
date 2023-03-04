@@ -42,7 +42,7 @@ const Home = () => {
         setPostdata(newArr);
     }
     return (
-        <div className='flex flex-col '>
+        <div className='flex flex-col  '>
             {
                 postdata.length == 0 ? <h1> no any new posts </h1> :
                     postdata.map((item, index) => (
