@@ -11,6 +11,7 @@ let onlineUsers = [];
 const addNewUser = (username, socketId) => {
   !onlineUsers.some((user) => user.username === username) &&
     onlineUsers.push({username, socketId});
+  console.log(onlineUsers);
 };
 
 const removeUser = (socketId) => {
@@ -30,7 +31,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("sendNotification", ({senderName, receiverName, type}) => {
+    console.log("Got on the Server OF SENDNOTIFICATION");
     const receiver = getUser(receiverName);
+
+    console.log("receiver is ", receiver);
     io.to(receiver.socketId).emit("getNotification", {
       senderName,
       type,
